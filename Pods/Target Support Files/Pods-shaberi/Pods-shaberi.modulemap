@@ -1,0 +1,6 @@
+framework module Pods_shaberi {
+  umbrella header "Pods-shaberi-umbrella.h"
+
+  export *
+  module * { export * }
+}
