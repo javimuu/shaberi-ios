@@ -13,6 +13,13 @@
 		36245CD41E48594000A6FD80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36245CD21E48594000A6FD80 /* Main.storyboard */; };
 		36245CD61E48594000A6FD80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36245CD51E48594000A6FD80 /* Assets.xcassets */; };
 		36245CD91E48594000A6FD80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36245CD71E48594000A6FD80 /* LaunchScreen.storyboard */; };
+		36245CE31E48605D00A6FD80 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CE21E48605D00A6FD80 /* LoginController.swift */; };
+		36245CE51E4860AC00A6FD80 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CE41E4860AC00A6FD80 /* UIColorExtension.swift */; };
+		36245CED1E4863B000A6FD80 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CEC1E4863B000A6FD80 /* LoginForm.swift */; };
+		36245CF01E48646A00A6FD80 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CEF1E48646A00A6FD80 /* BaseView.swift */; };
+		36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */; };
+		36245CF51E48737B00A6FD80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */; };
+		36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF71E487A6C00A6FD80 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +30,13 @@
 		36245CD51E48594000A6FD80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36245CD81E48594000A6FD80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		36245CDA1E48594000A6FD80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36245CE21E48605D00A6FD80 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		36245CE41E4860AC00A6FD80 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		36245CEC1E4863B000A6FD80 /* LoginForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
+		36245CEF1E48646A00A6FD80 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		36245CF71E487A6C00A6FD80 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		4037DA4625184A85D4902E89 /* Pods_shaberi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shaberi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30A601D93C557F512500D43 /* Pods-shaberi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD86F8C084B28D13F4306B7 /* Pods-shaberi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.release.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,14 +84,109 @@
 		36245CCD1E48594000A6FD80 /* shaberi */ = {
 			isa = PBXGroup;
 			children = (
-				36245CCE1E48594000A6FD80 /* AppDelegate.swift */,
-				36245CD01E48594000A6FD80 /* ViewController.swift */,
-				36245CD21E48594000A6FD80 /* Main.storyboard */,
-				36245CD51E48594000A6FD80 /* Assets.xcassets */,
-				36245CD71E48594000A6FD80 /* LaunchScreen.storyboard */,
-				36245CDA1E48594000A6FD80 /* Info.plist */,
+				36245CF61E487A5E00A6FD80 /* models */,
+				36245CF31E4870D800A6FD80 /* resources */,
+				36245CE91E48637900A6FD80 /* settings */,
+				36245CE01E48600200A6FD80 /* controllers */,
+				36245CE61E48614A00A6FD80 /* extensions */,
+				36245CE71E48636000A6FD80 /* views */,
 			);
 			path = shaberi;
+			sourceTree = "<group>";
+		};
+		36245CE01E48600200A6FD80 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				36245CEB1E48639400A6FD80 /* common */,
+				36245CE11E48600900A6FD80 /* authentication */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		36245CE11E48600900A6FD80 /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				36245CE21E48605D00A6FD80 /* LoginController.swift */,
+			);
+			name = authentication;
+			sourceTree = "<group>";
+		};
+		36245CE61E48614A00A6FD80 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36245CE41E4860AC00A6FD80 /* UIColorExtension.swift */,
+				36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */,
+			);
+			name = extensions;
+			sourceTree = "<group>";
+		};
+		36245CE71E48636000A6FD80 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				36245CEE1E48645700A6FD80 /* includes */,
+				36245CEA1E48638800A6FD80 /* common */,
+				36245CE81E48636600A6FD80 /* authentication */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		36245CE81E48636600A6FD80 /* authentication */ = {
+			isa = PBXGroup;
+			children = (
+				36245CEC1E4863B000A6FD80 /* LoginForm.swift */,
+			);
+			name = authentication;
+			sourceTree = "<group>";
+		};
+		36245CE91E48637900A6FD80 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */,
+				36245CDA1E48594000A6FD80 /* Info.plist */,
+			);
+			name = settings;
+			sourceTree = "<group>";
+		};
+		36245CEA1E48638800A6FD80 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				36245CD21E48594000A6FD80 /* Main.storyboard */,
+				36245CD71E48594000A6FD80 /* LaunchScreen.storyboard */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		36245CEB1E48639400A6FD80 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				36245CCE1E48594000A6FD80 /* AppDelegate.swift */,
+				36245CD01E48594000A6FD80 /* ViewController.swift */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		36245CEE1E48645700A6FD80 /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				36245CEF1E48646A00A6FD80 /* BaseView.swift */,
+			);
+			name = includes;
+			sourceTree = "<group>";
+		};
+		36245CF31E4870D800A6FD80 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				36245CD51E48594000A6FD80 /* Assets.xcassets */,
+			);
+			name = resources;
+			sourceTree = "<group>";
+		};
+		36245CF61E487A5E00A6FD80 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				36245CF71E487A6C00A6FD80 /* Errors.swift */,
+			);
+			name = models;
 			sourceTree = "<group>";
 		};
 		458E08B5B3611CB061F698BE /* Frameworks */ = {
@@ -151,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36245CD91E48594000A6FD80 /* LaunchScreen.storyboard in Resources */,
+				36245CF51E48737B00A6FD80 /* GoogleService-Info.plist in Resources */,
 				36245CD61E48594000A6FD80 /* Assets.xcassets in Resources */,
 				36245CD41E48594000A6FD80 /* Main.storyboard in Resources */,
 			);
@@ -211,8 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36245CED1E4863B000A6FD80 /* LoginForm.swift in Sources */,
 				36245CD11E48594000A6FD80 /* ViewController.swift in Sources */,
+				36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */,
+				36245CE31E48605D00A6FD80 /* LoginController.swift in Sources */,
+				36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */,
+				36245CF01E48646A00A6FD80 /* BaseView.swift in Sources */,
 				36245CCF1E48594000A6FD80 /* AppDelegate.swift in Sources */,
+				36245CE51E4860AC00A6FD80 /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +492,7 @@
 				36245CDF1E48594000A6FD80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
