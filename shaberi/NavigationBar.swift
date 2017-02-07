@@ -10,8 +10,6 @@ import UIKit
 
 class NavigationBar: BaseView {
     
-    var sourceController: MessagesController?
-    
     let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -60,12 +58,6 @@ class NavigationBar: BaseView {
         nameLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-        
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatLogController)))
-        isUserInteractionEnabled = true
-    }
-    
-    func showChatLogController() {
-        sourceController?.handleShowChatLogController()
+
     }
 }

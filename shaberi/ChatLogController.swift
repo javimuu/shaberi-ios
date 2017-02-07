@@ -18,15 +18,17 @@ class ChatLogController: UICollectionViewController {
         return view
     }()
     
+    var user: User? {
+        didSet {
+            navigationController?.title = user?.name
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
         setupInputComponents()
-    }
-    
-    func setupNavigationBar() {
-        navigationController?.title = "Chat"
     }
     
     func setupInputComponents() {
@@ -42,13 +44,30 @@ class ChatLogController: UICollectionViewController {
     }
     
     func handleSendMessage() {
-        print(312)
-        guard let messageText = inputContainerView.inputTextField.text else { return }
+        guard let messageText = inputContainerView.inputTextField.text,
+            let toId = user?.id,
+            let fromId = FIRAuth.auth()?.currentUser?.uid
+        else { return }
         
-        let ref = FIRDatabase.database().reference().child("messages")
+        let timestamp: NSNumber = NSNumber(value: NSDate().timeIntervalSince1970)
+        
+        let ref = FIRDatabase.database().reference().child(Models.messages)
         let childRef = ref.childByAutoId()
-        let values = ["text": messageText, "name": "Minae"]
-        
-        childRef.updateChildValues(values)
+        let values = ["text": messageText, "toId": toId, "fromId": fromId, "timestamp": timestamp] as [String : Any]
+
+        childRef.updateChildValues(values) { (error, reference) in
+            
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            let userMessagesRef = FIRDatabase.database().reference().child(Models.user_messages).child(fromId)
+            let messageId = childRef.key
+            userMessagesRef.updateChildValues([messageId: 1])
+            
+            let recipientUserMessagesRef = FIRDatabase.database().reference().child(Models.user_messages).child(toId)
+            recipientUserMessagesRef.updateChildValues([messageId: 1])
+        }
     }
 }

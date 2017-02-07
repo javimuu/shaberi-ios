@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserCell: UITableViewCell {
+class UserCell: BaseTableViewCell {
     
     let profileImageView: UIImageView = {
         let imgView = UIImageView()
@@ -29,13 +29,8 @@ class UserCell: UITableViewCell {
         detailTextLabel?.frame = CGRect(x: 72, y: (detailTextLabel?.frame.origin.y)! + 2, width: (detailTextLabel?.frame.width)!, height: (detailTextLabel?.frame.height)!)
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
-        
-        setupViews()
-    }
     
-    func setupViews() {
+    override func setupViews() {
         addSubview(profileImageView)
         
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
@@ -44,8 +39,5 @@ class UserCell: UITableViewCell {
         profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
