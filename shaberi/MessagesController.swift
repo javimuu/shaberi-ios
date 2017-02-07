@@ -29,15 +29,36 @@ class MessagesController: UITableViewController {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         } else {
-            let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    self.navigationItem.title = dictionary["name"] as? String
-                }
-                
-            }, withCancel: nil)
+            fetchUserLoggedIn()
         }
+    }
+    
+    func fetchUserLoggedIn() {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else { return }
+        
+        FIRDatabase.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                self.navigationItem.title = dictionary["name"] as? String
+                let user = User()
+                user.setValuesForKeys(dictionary)
+                self.setupNavBarTitle(withUser: user)
+            }
+            
+        }, withCancel: nil)
+    }
+    
+    func setupNavBarTitle(withUser user: User) {
+        let titleView = NavigationBar()
+        
+        if let profileImageUrl = user.profileImageUrl {
+            titleView.profileImageView.loadImageUsingCache(withUrl: profileImageUrl)
+        }
+        
+        if let name = user.name {
+            titleView.nameLabel.text = name
+        }
+        self.navigationItem.titleView = titleView
     }
     
     func handleCreateNewMessage() {
@@ -55,6 +76,7 @@ class MessagesController: UITableViewController {
         }
         
         let loginController = LoginController()
+        loginController.messageController = self
         present(loginController, animated: true, completion: nil)
     
     }

@@ -11,6 +11,8 @@ import Firebase
 
 class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    var messageController: MessagesController?
+    
     lazy var loginForm: LoginForm = {
         let lf = LoginForm()
         lf.translatesAutoresizingMaskIntoConstraints = false
@@ -87,9 +89,10 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
             guard let uid = user?.uid else { return }
             let imageName = NSUUID().uuidString
             
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).png")
+            let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
             
-            if let uploadData = UIImagePNGRepresentation(self.loginForm.profileImageView.image!) {
+            if let profileImage = self.loginForm.profileImageView.image,
+                let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
                 storageRef.put(uploadData, metadata: nil, completion: { (metadatsa, error) in
                     
                     if error != nil {
@@ -100,7 +103,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                     if let profileImageUrl = metadatsa?.downloadURL()?.absoluteString {
                         let values = ["name": name, "email": email, "profileImageUrl": profileImageUrl]
                         
-                        self.registerUserIntoDatabase(uid: uid, values: values as [String : AnyObject])
+                        self.registerUserIntoDatabase(withUid: uid, values: values as [String : AnyObject])
                     }
                 })
             }
@@ -119,12 +122,12 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 print(error!)
                 return
             }
-            
+            self.messageController?.fetchUserLoggedIn()
             self.dismiss(animated: true, completion: nil)
         })
     }
     
-    private func registerUserIntoDatabase(uid: String, values: [String: AnyObject]) {
+    private func registerUserIntoDatabase(withUid uid: String, values: [String: AnyObject]) {
         let ref = FIRDatabase.database().reference(fromURL: "https://shaberi-a249e.firebaseio.com/")
         let usersReference = ref.child("users").child(uid)
         
@@ -134,6 +137,9 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
                 return
             }
             
+            let user = User()
+            user.setValuesForKeys(values)
+            self.messageController?.setupNavBarTitle(withUser: user)
             self.dismiss(animated: true, completion: nil)
         })
     }
