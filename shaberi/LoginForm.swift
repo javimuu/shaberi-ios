@@ -54,7 +54,7 @@ class LoginForm: BaseView {
         btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         btn.layer.cornerRadius = 3
         btn.layer.masksToBounds = true
-        btn.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(handleLoginRegister), for: .touchUpInside)
         
         return btn
     }()
@@ -173,11 +173,20 @@ class LoginForm: BaseView {
         passwordTexFieldHeightContraint?.isActive = true
     }
     
-    func handleRegister() {
-        do {
-            try sourceController?.handleRegister()
-        } catch let error {
-            print(error)
+    func handleLoginRegister() {
+        
+        if loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX {
+            do {
+                try sourceController?.handleLogin()
+            } catch let error {
+                print(error)
+            }
+        } else {
+            do {
+                try sourceController?.handleRegister()
+            } catch let error {
+                print(error)
+            }
         }
     }
     
@@ -189,19 +198,19 @@ class LoginForm: BaseView {
     }
     
     func setupInputsContainerView() {
-        inputsContainerViewHeightContraint?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 100 : 150
+        inputsContainerViewHeightContraint?.constant = loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX ? 100 : 150
         
         nameTextFieldHeightContraint?.isActive = false
-        nameTextFieldHeightContraint = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 0 : 1/3)
-        nameTextField.isHidden = loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? true : false
+        nameTextFieldHeightContraint = nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX ? 0 : 1/3)
+        nameTextField.isHidden = loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX ? true : false
         nameTextFieldHeightContraint?.isActive = true
         
         emailTexFieldHeightContraint?.isActive = false
-        emailTexFieldHeightContraint = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 1/2 : 1/3)
+        emailTexFieldHeightContraint = emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX ? 1/2 : 1/3)
         emailTexFieldHeightContraint?.isActive = true
         
         passwordTexFieldHeightContraint?.isActive = false
-        passwordTexFieldHeightContraint = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == 0 ? 1/2 : 1/3)
+        passwordTexFieldHeightContraint = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: loginRegisterSegmentedControl.selectedSegmentIndex == LoginConstant.LOGIN_SEGMENT_INDEX ? 1/2 : 1/3)
         passwordTexFieldHeightContraint?.isActive = true
     }
 }

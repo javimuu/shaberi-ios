@@ -20,6 +20,7 @@
 		36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */; };
 		36245CF51E48737B00A6FD80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */; };
 		36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF71E487A6C00A6FD80 /* Errors.swift */; };
+		366AF6CF1E49591C000100A4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6CE1E49591C000100A4 /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36245CF71E487A6C00A6FD80 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		366AF6CE1E49591C000100A4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		4037DA4625184A85D4902E89 /* Pods_shaberi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shaberi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30A601D93C557F512500D43 /* Pods-shaberi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD86F8C084B28D13F4306B7 /* Pods-shaberi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.release.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.release.xcconfig"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */,
 				36245CDA1E48594000A6FD80 /* Info.plist */,
+				366AF6CE1E49591C000100A4 /* Config.swift */,
 			);
 			name = settings;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			files = (
 				36245CED1E4863B000A6FD80 /* LoginForm.swift in Sources */,
 				36245CD11E48594000A6FD80 /* ViewController.swift in Sources */,
+				366AF6CF1E49591C000100A4 /* Config.swift in Sources */,
 				36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */,
 				36245CE31E48605D00A6FD80 /* LoginController.swift in Sources */,
 				36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */,

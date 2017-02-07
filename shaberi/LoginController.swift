@@ -65,7 +65,26 @@ class LoginController: UIViewController {
                     print(err!)
                     return
                 }
+                
+                self.dismiss(animated: true, completion: nil)
             })
+        })
+    }
+    
+    func handleLogin() throws {
+        guard let email = loginForm.emailTextField.text,
+            let password = loginForm.passwordTextField.text
+        else {
+            throw AuthenticationError.invalid("Invalid email or password")
+        }
+        
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            self.dismiss(animated: true, completion: nil)
         })
     }
 }
