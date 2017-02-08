@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import MobileCoreServices
+import AVFoundation
 
 class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -107,17 +109,11 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var selectedImageFromPicker: UIImage?
         
-        if let editedImage = info["UIImagePickerControllerEditedImage"]  as? UIImage {
-            selectedImageFromPicker = editedImage
-            
-        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
-            selectedImageFromPicker = originalImage
-        }
-        
-        if let selectedImage = selectedImageFromPicker {
-            uploadToFirebaseStorage(use: selectedImage)
+        if let videoUrl = info[UIImagePickerControllerMediaURL] as? URL{
+            self.handleVideoSelected(for: videoUrl)
+        } else {
+            self.handleImageSelected(for: info)
         }
         
         dismiss(animated: true, completion: nil)
@@ -147,6 +143,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
+        imagePickerController.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
         
         present(imagePickerController, animated: true, completion: nil)
     }
@@ -255,6 +252,72 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
     
+    private func getThumbnailImage(forUrl url: URL) -> UIImage? {
+        let asset: AVAsset = AVAsset(url: url)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        
+        do {
+            let thumbnailImage = try imageGenerator.copyCGImage(at: CMTimeMake(1, 60) , actualTime: nil)
+            return UIImage(cgImage: thumbnailImage)
+        } catch let error {
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    private func handleImageSelected(for info: [String: Any]) {
+        var selectedImageFromPicker: UIImage?
+        
+        if let editedImage = info["UIImagePickerControllerEditedImage"]  as? UIImage {
+            selectedImageFromPicker = editedImage
+            
+        } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+//            uploadToFirebaseStorage(use: selectedImage)
+            uploadToFirebaseStorage(use: selectedImage, completion: { (imageUrl) in
+                self.sendMessage(withImgUrl: imageUrl, image: selectedImage)
+            })
+        }
+    }
+    
+    private func handleVideoSelected(for url: URL) {
+        let fileName = NSUUID().uuidString
+        let ref = FIRStorage.storage().reference().child(Models.message_videos).child("\(fileName).mp4")
+        
+        let uploadTask = ref.putFile(url, metadata: nil, completion: { (metadata, error) in
+            
+            if error != nil {
+                print("Failed to upload video: ", error!)
+                return
+            }
+            
+            if let storageUrl = metadata?.downloadURL()?.absoluteString {
+                
+                if let thumbnailImage = self.getThumbnailImage(forUrl: url) {
+                    
+                    self.uploadToFirebaseStorage(use: thumbnailImage, completion: { (imageUrl) in
+                        let properties = ["imageUrl": imageUrl, "imageWidth": thumbnailImage.size.width, "imageHeight": thumbnailImage.size.height, "videoUrl": storageUrl] as [String : Any]
+                        self.sendMessage(withProperties: properties)
+                    })
+                }
+            }
+        })
+        
+        uploadTask.observe(.progress) { (snapshot) in
+            if let compltedUnitCount = snapshot.progress?.completedUnitCount {
+                self.navigationItem.title = String(compltedUnitCount)
+            }
+        }
+        
+        uploadTask.observe(.success) { (snapshot) in
+            self.navigationItem.title = self.user?.name
+        }
+    }
+    
     private func sendMessage(withImgUrl url: String, image: UIImage) {
         let properties = ["imageUrl": url, "imageWidth": image.size.width, "imageHeight": image.size.height] as [String : Any]
         
@@ -325,7 +388,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         }
     }
     
-    private func uploadToFirebaseStorage(use image: UIImage) {
+    private func uploadToFirebaseStorage(use image: UIImage, completion: @escaping (_ imageUrl: String) -> ()) {
         let imageName = NSUUID().uuidString
         let ref = FIRStorage.storage().reference().child(Models.message_images).child(imageName)
         
@@ -338,7 +401,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
                 }
                 
                 if let imageUrl = metadata?.downloadURL()?.absoluteString {
-                    self.sendMessage(withImgUrl: imageUrl, image: image)
+                    completion(imageUrl)
                 }
             })
         }
