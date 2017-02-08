@@ -18,6 +18,8 @@ struct Models {
     static let users = "users"
     static let messages = "messages"
     static let user_messages = "user-messages"
+    static let profile_images = "profile-images"
+    static let message_images = "message-images"
 }
 
 struct Colors {

@@ -12,6 +12,17 @@ class InputContainerView: BaseView, UITextFieldDelegate {
     
     var sourceController: ChatLogController?
     
+    lazy var uploadImageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.image = #imageLiteral(resourceName: "ic_gallery")
+        imgView.contentMode = .scaleAspectFill
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleUploadImage)))
+        imgView.isUserInteractionEnabled = true
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return imgView
+    }()
+    
     lazy var sendButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Send", for: .normal)
@@ -46,6 +57,13 @@ class InputContainerView: BaseView, UITextFieldDelegate {
         addSubview(sendButton)
         addSubview(inputTextField)
         addSubview(seperatorLineView)
+        addSubview(uploadImageView)
+        
+        // set uploadImageView constraints
+        uploadImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        uploadImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        uploadImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        uploadImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         // set sendButton contraints
         sendButton.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
@@ -54,7 +72,7 @@ class InputContainerView: BaseView, UITextFieldDelegate {
         sendButton.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
         // set inputTextField contraints
-        inputTextField.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        inputTextField.leftAnchor.constraint(equalTo: uploadImageView.rightAnchor, constant: 12).isActive = true
         inputTextField.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         inputTextField.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
@@ -69,6 +87,10 @@ class InputContainerView: BaseView, UITextFieldDelegate {
     
     func handleSendMessage() {
         sourceController?.handleSendMessage()
+    }
+    
+    func handleUploadImage() {
+        sourceController?.handleUploadImage()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

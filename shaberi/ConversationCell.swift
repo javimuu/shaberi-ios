@@ -10,6 +10,8 @@ import UIKit
 
 class ConversationCell: UICollectionViewCell {
     
+    var sourceController: ChatLogController?
+    
     var bubbleViewWidthAnchor: NSLayoutConstraint?
     var bubbleViewRightAnchor: NSLayoutConstraint?
     var bubbleViewLeftAnchor: NSLayoutConstraint?
@@ -25,12 +27,25 @@ class ConversationCell: UICollectionViewCell {
         return imgView
     }()
     
+    lazy var messageImageView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.layer.cornerRadius = 16
+        imgView.layer.masksToBounds = true
+        imgView.contentMode = .scaleAspectFill
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomImage)))
+        imgView.isUserInteractionEnabled = true
+        
+        return imgView
+    }()
+    
     let textView: UITextView = {
         let tv = UITextView()
         tv.font = UIFont.systemFont(ofSize: 16)
         tv.backgroundColor = .clear
         tv.textColor = .white
         tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.isEditable = false
         
         return tv
     }()
@@ -59,12 +74,13 @@ class ConversationCell: UICollectionViewCell {
         addSubview(textView)
         addSubview(profileImageView)
         
+        bubbleView.addSubview(messageImageView)
+        
         //set profileImageView constraints
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         profileImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         profileImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         profileImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
-
         
         // set bubbleView constraints
         bubbleViewRightAnchor = bubbleView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8)
@@ -84,6 +100,16 @@ class ConversationCell: UICollectionViewCell {
         textView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         textView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
         
+        //set messageImageView constraints
+        messageImageView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor).isActive = true
+        messageImageView.topAnchor.constraint(equalTo: bubbleView.topAnchor).isActive = true
+        messageImageView.widthAnchor.constraint(equalTo: bubbleView.widthAnchor).isActive = true
+        messageImageView.heightAnchor.constraint(equalTo: bubbleView.heightAnchor).isActive = true
+        
     }
     
+    func handleZoomImage(tapGesture: UITapGestureRecognizer) {
+        guard let imageView = tapGesture.view as? UIImageView else { return }
+        sourceController?.handleZoomImage(withImageView: imageView)
+    }
 }
