@@ -20,6 +20,7 @@
 		36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */; };
 		36245CF51E48737B00A6FD80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */; };
 		36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF71E487A6C00A6FD80 /* Errors.swift */; };
+		3632DCF41E4AB026000FEADC /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632DCF31E4AB026000FEADC /* ConversationCell.swift */; };
 		366AF6CF1E49591C000100A4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6CE1E49591C000100A4 /* Config.swift */; };
 		366AF6D21E495F78000100A4 /* CreateNewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D11E495F78000100A4 /* CreateNewMessageController.swift */; };
 		366AF6D41E496181000100A4 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D31E496181000100A4 /* UIImageViewExtension.swift */; };
@@ -48,6 +49,7 @@
 		36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36245CF71E487A6C00A6FD80 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		3632DCF31E4AB026000FEADC /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		366AF6CE1E49591C000100A4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		366AF6D11E495F78000100A4 /* CreateNewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageController.swift; sourceTree = "<group>"; };
 		366AF6D31E496181000100A4 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				366AF6DA1E49A019000100A4 /* NavigationBar.swift */,
 				366AF6DE1E49A94B000100A4 /* InputContainerView.swift */,
 				366AF6E21E49BE21000100A4 /* MessageCell.swift */,
+				3632DCF31E4AB026000FEADC /* ConversationCell.swift */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				366AF6CF1E49591C000100A4 /* Config.swift in Sources */,
 				36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */,
 				366AF6D41E496181000100A4 /* UIImageViewExtension.swift in Sources */,
+				3632DCF41E4AB026000FEADC /* ConversationCell.swift in Sources */,
 				366AF6DF1E49A94B000100A4 /* InputContainerView.swift in Sources */,
 				36245CE31E48605D00A6FD80 /* LoginController.swift in Sources */,
 				36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */,

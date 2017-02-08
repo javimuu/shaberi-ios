@@ -82,6 +82,5 @@ class CreateNewMessageController: UITableViewController {
             }
         }, withCancel: nil)
     }
-    
 }
 

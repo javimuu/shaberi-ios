@@ -15,6 +15,7 @@ class MessagesController: UITableViewController {
     
     var messages = [Message]()
     var messagesDictionary = [String: Message]()
+    var timer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,26 @@ class MessagesController: UITableViewController {
         return 72
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.item]
+        
+        guard let chatPartnerId = message.getChatPartnerId() else { return }
+        
+        let ref = FIRDatabase.database().reference().child(Models.users).child(chatPartnerId)
+        
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            guard let dictionary = snapshot.value as? [String: AnyObject] else { return }
+            
+            let user = User()
+            
+            user.id = chatPartnerId
+            user.setValuesForKeys(dictionary)
+            
+            self.handleShowChatLogController(for: user)
+            
+        }, withCancel: nil)
+    }
     
     func setupNavigationBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
@@ -62,29 +83,16 @@ class MessagesController: UITableViewController {
         
         ref.observe(.childAdded, with: { (snapshot) in
             
-            let messageId = snapshot.key
-            let messageReference = FIRDatabase.database().reference().child(Models.messages).child(messageId)
+            let userId = snapshot.key
             
-            messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            let userMessagesRef = FIRDatabase.database().reference().child(Models.user_messages).child(uid).child(userId)
+            
+            userMessagesRef.observe(.childAdded, with: { (snapshot) in
                 
-                if let dictionary = snapshot.value as? [String: AnyObject] {
-                    let message = Message()
-                    message.setValuesForKeys(dictionary)
-                    
-                    if let toId = message.toId {
-                        self.messagesDictionary[toId] = message
-                        
-                        self.messages = Array(self.messagesDictionary.values)
-                        self.messages.sort(by: { (message1, message2) -> Bool in
-                            return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
-                        })
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                }
+                let messageId = snapshot.key
                 
+                self.fetchMessage(withMessageId: messageId)
+            
             }, withCancel: nil)
             
         }, withCancel: nil)
@@ -152,9 +160,21 @@ class MessagesController: UITableViewController {
         }
         
         let loginController = LoginController()
+        
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)
+    }
     
+    func handleReloadTable() {
+        
+        self.messages = Array(self.messagesDictionary.values)
+        self.messages.sort(by: { (message1, message2) -> Bool in
+            return (message1.timestamp?.intValue)! > (message2.timestamp?.intValue)!
+        })
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func handleShowChatLogController(for user: User) {
@@ -164,6 +184,28 @@ class MessagesController: UITableViewController {
         chatLogController.user = user
         navigationController?.pushViewController(chatLogController, animated: true)
     }
-
+    
+    private func attemptReloadTable() {
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+    }
+    
+    private func fetchMessage(withMessageId messageId: String) {
+        let messageReference = FIRDatabase.database().reference().child(Models.messages).child(messageId)
+        
+        messageReference.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.setValuesForKeys(dictionary)
+                
+                if let chatPartnerId = message.getChatPartnerId() {
+                    self.messagesDictionary[chatPartnerId] = message
+                }
+                
+                self.attemptReloadTable()
+            }
+        }, withCancel: nil)
+    }
 }
 

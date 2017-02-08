@@ -33,7 +33,7 @@ class InputContainerView: BaseView, UITextFieldDelegate {
     
     let seperatorLineView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = .darkGray
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view

@@ -52,15 +52,9 @@ class MessageCell: UserCell {
     }
     
     private func setupProfileInfo() {
-        let chatPartnerId: String?
         
-        if message?.fromId == FIRAuth.auth()?.currentUser?.uid {
-            chatPartnerId  = message?.toId
-        } else {
-            chatPartnerId  = message?.fromId
-        }
         
-        if let id = chatPartnerId {
+        if let id = message?.getChatPartnerId() {
             let ref = FIRDatabase.database().reference().child("users").child(id)
             ref.observeSingleEvent(of: .value, with: { (snapshot) in
                 
