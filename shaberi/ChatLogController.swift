@@ -67,7 +67,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
         let message = messages[indexPath.item]
         
         cell.sourceController = self
-        
+        cell.message = message
         cell.textView.text = message.text
         
         setupConversation(for: cell, message: message)
@@ -79,6 +79,8 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
             cell.bubbleViewWidthAnchor?.constant = 200
             cell.textView.isHidden = true
         }
+        
+        cell.playButton.isHidden = message.videoUrl == nil
         
         return cell
     }
@@ -125,7 +127,7 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
     
     func handleKeyboardDidShow() {
         if self.messages.count > 0 {
-            let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
+            let indexPath = IndexPath(item: collectionView!.numberOfItems(inSection: 0) - 1, section: 0)
             collectionView?.scrollToItem(at: indexPath, at: .top, animated: true)
         }
     }
@@ -219,9 +221,9 @@ class ChatLogController: UICollectionViewController, UICollectionViewDelegateFlo
                 self.messages.append(message)
                 
                 DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
                     
                     if self.messages.count > 0 {
+                        self.collectionView?.reloadData()
                         let indexPath = IndexPath(item: self.messages.count - 1, section: 0)
                         self.collectionView?.scrollToItem(at: indexPath, at: .bottom, animated: true)
                     }
