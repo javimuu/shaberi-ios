@@ -53,6 +53,7 @@ class MessagesController: UITableViewController {
             
             guard let dictionary = snapshot.value as? [String: AnyObject] else { return }
             
+            
             let user = User()
             
             user.id = chatPartnerId
@@ -61,6 +62,37 @@ class MessagesController: UITableViewController {
             self.handleShowChatLogController(for: user)
             
         }, withCancel: nil)
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+            return
+        }
+        
+        let message = self.messages[indexPath.row]
+        
+        if let chatPartnerId = message.getChatPartnerId() {
+            let ref = FIRDatabase.database().reference().child(Models.user_messages).child(uid).child(chatPartnerId)
+            
+            ref.removeValue(completionBlock: { (error, reference) in
+                
+                if error != nil {
+                    print("Failed to delete conversation: ", error! )
+                    return
+                }
+                
+                self.messagesDictionary.removeValue(forKey: chatPartnerId)
+                self.attemptReloadTable()
+//                // another unsafe way to reload table view:
+//                self.messages.remove(at: indexPath.row)
+//                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+        }
     }
     
     func setupNavigationBar() {
@@ -72,6 +104,7 @@ class MessagesController: UITableViewController {
     
     func setupTableView() {
         self.tableView.register(MessageCell.self, forCellReuseIdentifier: cellId)
+        self.tableView.allowsMultipleSelectionDuringEditing = true
     }
     
     func observerUserMessages() {
@@ -95,6 +128,12 @@ class MessagesController: UITableViewController {
             
             }, withCancel: nil)
             
+        }, withCancel: nil)
+        
+        ref.observe(.childRemoved, with: { (snapshot) in
+            
+            self.messagesDictionary.removeValue(forKey: snapshot.key)
+            self.attemptReloadTable()
         }, withCancel: nil)
     }
     
@@ -147,6 +186,7 @@ class MessagesController: UITableViewController {
     func handleCreateNewMessage() {
         let createNewMessageController = CreateNewMessageController()
         createNewMessageController.messageController = self
+        
         let navigationController = UINavigationController(rootViewController: createNewMessageController)
         present(navigationController, animated: true, completion: nil)
     }
