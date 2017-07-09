@@ -16,11 +16,13 @@ class LoginForm: BaseView {
     var emailTexFieldHeightContraint: NSLayoutConstraint?
     var passwordTexFieldHeightContraint: NSLayoutConstraint?
     
-    let profileImageView: UIImageView = {
+    lazy var profileImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "profile_img")
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
+        imgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imgView.isUserInteractionEnabled = true
         
         return imgView
     }()
@@ -171,6 +173,10 @@ class LoginForm: BaseView {
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         passwordTexFieldHeightContraint = passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/3)
         passwordTexFieldHeightContraint?.isActive = true
+    }
+    
+    func handleSelectProfileImageView() {
+        sourceController?.handleSelectProfileImageView()
     }
     
     func handleLoginRegister() {
