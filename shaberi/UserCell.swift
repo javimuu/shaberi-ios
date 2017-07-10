@@ -14,7 +14,7 @@ class UserCell: UITableViewCell {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
         imgView.image = UIImage(named: "profile_img")
-        imgView.layer.cornerRadius = 20
+        imgView.layer.cornerRadius = 24
         imgView.layer.masksToBounds = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -24,9 +24,9 @@ class UserCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        textLabel?.frame = CGRect(x: 56, y: (textLabel?.frame.origin.y)! - 2, width: (textLabel?.frame.width)!, height: (textLabel?.frame.height)!)
+        textLabel?.frame = CGRect(x: 72, y: (textLabel?.frame.origin.y)! - 2, width: (textLabel?.frame.width)!, height: (textLabel?.frame.height)!)
         
-        detailTextLabel?.frame = CGRect(x: 56, y: (detailTextLabel?.frame.origin.y)! + 2, width: (detailTextLabel?.frame.width)!, height: (detailTextLabel?.frame.height)!)
+        detailTextLabel?.frame = CGRect(x: 72, y: (detailTextLabel?.frame.origin.y)! + 2, width: (detailTextLabel?.frame.width)!, height: (detailTextLabel?.frame.height)!)
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -41,8 +41,8 @@ class UserCell: UITableViewCell {
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
 //        profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 48).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

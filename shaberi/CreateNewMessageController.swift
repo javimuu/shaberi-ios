@@ -34,25 +34,14 @@ class CreateNewMessageController: UITableViewController {
         cell.detailTextLabel?.text = user.email
         
         if let profileImageUrl = user.profileImageUrl {
-            let url = URL(string: profileImageUrl)
-            URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                     cell.profileImageView.image = UIImage(data: data!)
-                }
-               
-            }).resume()
+            cell.profileImageView.loadImageUsingCache(withUrl: profileImageUrl)
         }
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 56
+        return 72
     }
     
     func setupNavigationBar() {

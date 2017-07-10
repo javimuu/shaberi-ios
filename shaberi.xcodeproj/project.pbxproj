@@ -25,6 +25,7 @@
 		366AF6D41E496181000100A4 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D31E496181000100A4 /* UIImageViewExtension.swift */; };
 		366AF6D61E49698F000100A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D51E49698F000100A4 /* User.swift */; };
 		366AF6D91E496C74000100A4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D81E496C74000100A4 /* UserCell.swift */; };
+		366AF6DB1E49A019000100A4 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6DA1E49A019000100A4 /* NavigationBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		366AF6D31E496181000100A4 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		366AF6D51E49698F000100A4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		366AF6D81E496C74000100A4 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		366AF6DA1E49A019000100A4 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		4037DA4625184A85D4902E89 /* Pods_shaberi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shaberi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30A601D93C557F512500D43 /* Pods-shaberi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD86F8C084B28D13F4306B7 /* Pods-shaberi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.release.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.release.xcconfig"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				366AF6D81E496C74000100A4 /* UserCell.swift */,
+				366AF6DA1E49A019000100A4 /* NavigationBar.swift */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				366AF6D61E49698F000100A4 /* User.swift in Sources */,
 				36245CF01E48646A00A6FD80 /* BaseView.swift in Sources */,
 				36245CCF1E48594000A6FD80 /* AppDelegate.swift in Sources */,
+				366AF6DB1E49A019000100A4 /* NavigationBar.swift in Sources */,
 				36245CE51E4860AC00A6FD80 /* UIColorExtension.swift in Sources */,
 				366AF6D91E496C74000100A4 /* UserCell.swift in Sources */,
 			);
