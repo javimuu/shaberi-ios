@@ -128,7 +128,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     private func registerUserIntoDatabase(withUid uid: String, values: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://shaberi-a249e.firebaseio.com/")
+        let ref = FIRDatabase.database().reference()
         let usersReference = ref.child("users").child(uid)
         
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
