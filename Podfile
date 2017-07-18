@@ -11,5 +11,6 @@ target 'shaberi' do
     pod 'Firebase/Database'
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
+    pod 'MBProgressHUD', '~>1.0.0'
 
 end

@@ -20,12 +20,18 @@
 		36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */; };
 		36245CF51E48737B00A6FD80 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */; };
 		36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36245CF71E487A6C00A6FD80 /* Errors.swift */; };
+		3632DCF41E4AB026000FEADC /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632DCF31E4AB026000FEADC /* ConversationCell.swift */; };
 		366AF6CF1E49591C000100A4 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6CE1E49591C000100A4 /* Config.swift */; };
 		366AF6D21E495F78000100A4 /* CreateNewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D11E495F78000100A4 /* CreateNewMessageController.swift */; };
 		366AF6D41E496181000100A4 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D31E496181000100A4 /* UIImageViewExtension.swift */; };
 		366AF6D61E49698F000100A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D51E49698F000100A4 /* User.swift */; };
 		366AF6D91E496C74000100A4 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6D81E496C74000100A4 /* UserCell.swift */; };
 		366AF6DB1E49A019000100A4 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6DA1E49A019000100A4 /* NavigationBar.swift */; };
+		366AF6DD1E49A67C000100A4 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6DC1E49A67C000100A4 /* ChatLogController.swift */; };
+		366AF6DF1E49A94B000100A4 /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6DE1E49A94B000100A4 /* InputContainerView.swift */; };
+		366AF6E11E49BCF6000100A4 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6E01E49BCF6000100A4 /* Message.swift */; };
+		366AF6E31E49BE21000100A4 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6E21E49BE21000100A4 /* MessageCell.swift */; };
+		366AF6E51E49BE4F000100A4 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AF6E41E49BE4F000100A4 /* BaseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,12 +49,18 @@
 		36245CF11E486B2100A6FD80 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		36245CF41E48737B00A6FD80 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		36245CF71E487A6C00A6FD80 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		3632DCF31E4AB026000FEADC /* ConversationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		366AF6CE1E49591C000100A4 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		366AF6D11E495F78000100A4 /* CreateNewMessageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewMessageController.swift; sourceTree = "<group>"; };
 		366AF6D31E496181000100A4 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		366AF6D51E49698F000100A4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		366AF6D81E496C74000100A4 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		366AF6DA1E49A019000100A4 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		366AF6DC1E49A67C000100A4 /* ChatLogController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
+		366AF6DE1E49A94B000100A4 /* InputContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
+		366AF6E01E49BCF6000100A4 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		366AF6E21E49BE21000100A4 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		366AF6E41E49BE4F000100A4 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		4037DA4625184A85D4902E89 /* Pods_shaberi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shaberi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30A601D93C557F512500D43 /* Pods-shaberi.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.debug.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.debug.xcconfig"; sourceTree = "<group>"; };
 		DCD86F8C084B28D13F4306B7 /* Pods-shaberi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shaberi.release.xcconfig"; path = "Pods/Target Support Files/Pods-shaberi/Pods-shaberi.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				36245CEF1E48646A00A6FD80 /* BaseView.swift */,
+				366AF6E41E49BE4F000100A4 /* BaseTableViewCell.swift */,
 			);
 			name = includes;
 			sourceTree = "<group>";
@@ -201,6 +214,7 @@
 			children = (
 				36245CF71E487A6C00A6FD80 /* Errors.swift */,
 				366AF6D51E49698F000100A4 /* User.swift */,
+				366AF6E01E49BCF6000100A4 /* Message.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -210,6 +224,7 @@
 			children = (
 				36245CD01E48594000A6FD80 /* MessagesController.swift */,
 				366AF6D11E495F78000100A4 /* CreateNewMessageController.swift */,
+				366AF6DC1E49A67C000100A4 /* ChatLogController.swift */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -219,6 +234,9 @@
 			children = (
 				366AF6D81E496C74000100A4 /* UserCell.swift */,
 				366AF6DA1E49A019000100A4 /* NavigationBar.swift */,
+				366AF6DE1E49A94B000100A4 /* InputContainerView.swift */,
+				366AF6E21E49BE21000100A4 /* MessageCell.swift */,
+				3632DCF31E4AB026000FEADC /* ConversationCell.swift */,
 			);
 			name = messages;
 			sourceTree = "<group>";
@@ -355,11 +373,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				366AF6DD1E49A67C000100A4 /* ChatLogController.swift in Sources */,
 				36245CED1E4863B000A6FD80 /* LoginForm.swift in Sources */,
 				36245CD11E48594000A6FD80 /* MessagesController.swift in Sources */,
+				366AF6E51E49BE4F000100A4 /* BaseTableViewCell.swift in Sources */,
+				366AF6E11E49BCF6000100A4 /* Message.swift in Sources */,
 				366AF6CF1E49591C000100A4 /* Config.swift in Sources */,
 				36245CF21E486B2100A6FD80 /* UITextFieldExtension.swift in Sources */,
 				366AF6D41E496181000100A4 /* UIImageViewExtension.swift in Sources */,
+				3632DCF41E4AB026000FEADC /* ConversationCell.swift in Sources */,
+				366AF6DF1E49A94B000100A4 /* InputContainerView.swift in Sources */,
 				36245CE31E48605D00A6FD80 /* LoginController.swift in Sources */,
 				36245CF81E487A6C00A6FD80 /* Errors.swift in Sources */,
 				366AF6D21E495F78000100A4 /* CreateNewMessageController.swift in Sources */,
@@ -369,6 +392,7 @@
 				366AF6DB1E49A019000100A4 /* NavigationBar.swift in Sources */,
 				36245CE51E4860AC00A6FD80 /* UIColorExtension.swift in Sources */,
 				366AF6D91E496C74000100A4 /* UserCell.swift in Sources */,
+				366AF6E31E49BE21000100A4 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
