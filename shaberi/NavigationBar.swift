@@ -10,6 +10,8 @@ import UIKit
 
 class NavigationBar: BaseView {
     
+    var sourceController: MessagesController?
+    
     let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +23,7 @@ class NavigationBar: BaseView {
         let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.contentMode = .scaleAspectFill
-        imgView.layer.cornerRadius = 20
+        imgView.layer.cornerRadius = 18
         imgView.clipsToBounds = true
         
         return imgView
@@ -50,14 +52,20 @@ class NavigationBar: BaseView {
         // set profleImageView Contraints
         profileImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor).isActive = true
         profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 36).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 36).isActive = true
         
         // set nameLabel Contraints
-        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 6).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-
+        
+        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatLogController)))
+        isUserInteractionEnabled = true
+    }
+    
+    func showChatLogController() {
+        sourceController?.handleShowChatLogController()
     }
 }

@@ -49,7 +49,12 @@ class MessagesController: UITableViewController {
     }
     
     func setupNavBarTitle(withUser user: User) {
-        let titleView = NavigationBar()
+        let titleView: NavigationBar = {
+            let view = NavigationBar()
+            view.sourceController = self
+            
+            return view
+        }()
         
         if let profileImageUrl = user.profileImageUrl {
             titleView.profileImageView.loadImageUsingCache(withUrl: profileImageUrl)
@@ -79,6 +84,13 @@ class MessagesController: UITableViewController {
         loginController.messageController = self
         present(loginController, animated: true, completion: nil)
     
+    }
+    
+    func handleShowChatLogController() {
+        let layout = UICollectionViewFlowLayout()
+        let chatLogController = ChatLogController(collectionViewLayout: layout)
+        
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
 
 }
