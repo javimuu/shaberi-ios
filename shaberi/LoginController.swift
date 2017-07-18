@@ -89,7 +89,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
             guard let uid = user?.uid else { return }
             let imageName = NSUUID().uuidString
             
-            let storageRef = FIRStorage.storage().reference().child("profile_images").child("\(imageName).jpg")
+            let storageRef = FIRStorage.storage().reference().child(Models.profile_images).child("\(imageName).jpg")
             
             if let profileImage = self.loginForm.profileImageView.image,
                 let uploadData = UIImageJPEGRepresentation(profileImage, 0.1) {
@@ -128,7 +128,7 @@ class LoginController: UIViewController, UIImagePickerControllerDelegate, UINavi
     }
     
     private func registerUserIntoDatabase(withUid uid: String, values: [String: AnyObject]) {
-        let ref = FIRDatabase.database().reference(fromURL: "https://shaberi-a249e.firebaseio.com/")
+        let ref = FIRDatabase.database().reference()
         let usersReference = ref.child("users").child(uid)
         
         usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
