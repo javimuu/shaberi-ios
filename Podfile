@@ -7,5 +7,10 @@ target 'shaberi' do
 
   # Pods for shaberi
     pod 'Alamofire', '~>4.2.0'
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Storage'
+    pod 'MBProgressHUD', '~>1.0.0'
 
 end
